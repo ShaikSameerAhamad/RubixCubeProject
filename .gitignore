@@ -1,0 +1,14 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Node.js
+node_modules/
+dist/
+.vite/
+
+# Python virtualenv
+venv/
+
+# OS files
+.DS_Store
