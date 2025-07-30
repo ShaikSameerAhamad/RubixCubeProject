@@ -48,7 +48,16 @@ class CubeApiService {
         size: 3
       })
     });
-    return response.json();
+    const data = await response.json();
+    // Convert backend response to SolutionResponse
+    const movesArray = typeof data.solution === 'string' && data.solution.trim() !== ''
+      ? data.solution.trim().split(' ')
+      : [];
+    return {
+      moves: movesArray,
+      totalSteps: data.stats?.moves ?? movesArray.length,
+      estimatedTime: data.stats?.time
+    };
   }
 
   // Analyze cube state for optimal solving algorithm

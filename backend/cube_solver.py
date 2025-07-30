@@ -114,6 +114,20 @@ class CubeBase:
         return self._solve_edges(state) + self._solve_corners(state)
 
     def solve(self):
+        # Check if already solved
+        if self.is_solved():
+            return {
+                "moves": '',
+                "stats": {
+                    "time": 0.0,
+                    "moves": 0,
+                    "phase1_moves": 0,
+                    "phase2_moves": 0,
+                    "method": "Already solved"
+                },
+                "state_after_phase1": ''.join(self.state),
+                "state_after_phase2": ''.join(self.state)
+            }
         start_time = time.time()
         phase1_solution = self.solve_phase1()
         if phase1_solution is None:
